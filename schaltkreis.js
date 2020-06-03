@@ -69,7 +69,7 @@ function speak(elem) {
     quot.volume = 1; // 0 to 1
     quot.rate = 1.1; // 0.1 to 10
     quot.pitch = 1; //0 to 2
-    quot.text = "! zitiert nach heinz von förster";
+    quot.text = ". zitiert nach heinz von förster";
     speechSynthesis.speak(quot);
     firstSolve = true;
   }

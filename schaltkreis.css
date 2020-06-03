@@ -11,12 +11,15 @@ body {
 }
 
 #quoteshow {
+  white-space: pre;
+  padding: 5px 30px;
   font-size: 2rem;
   font-weight: 300;
   text-align: left;
 }
 
 #source {
+  padding: 0 30px;
   font-size: 2rem;
   font-weight: 300;
   text-align: right;
@@ -29,8 +32,14 @@ body {
   grid-template-rows: 9;
 }
 
+.schaltWord {
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
 
-.gap {
+.schaltWord:hover {
+  background-color: #f0c9f2;
 }
 
 .gapv1 {
@@ -45,13 +54,6 @@ body {
   width:  25%
 }
 
-.wenn {
-  padding-right: 3rem;
-}
-
-.nicht {
-  padding-left: 3rem;
-}
 
 .g1 {
   grid-row: 2;
@@ -82,19 +84,21 @@ body {
 .blind {
   grid-column: 2;
   grid-row: 3;
-  text-align: right;
+  justify-self: right;
 }
 
 .dann {
   grid-column: 4;
   grid-row: 3;
-  text-align: left;
+  justify-self: left;
 }
 /*  */
 .wenn {
   grid-column: 2;
   grid-row: 5;
-  text-align: right;
+  justify-self: right;
+  position: relative;
+  left: -1rem;
 }
 
 .ich {
@@ -102,25 +106,76 @@ body {
   grid-row: 5;
 }
 
+.wordBox {
+  display: flex;
+  justify-content: center;
+}
+
 .nicht {
   grid-column: 4;
   grid-row: 5;
-  text-align: left;
+  justify-self: left;
+  position: relative;
+  left: 1rem;
 }
 /*  */
 .dass {
   grid-column: 2;
   grid-row: 7;
-  text-align: right;
+  justify-self: right;
 }
 
 .sehe {
   grid-column: 4;
   grid-row: 7;
-  text-align: left;
+  justify-self: left;
 }
 /*  */
 .aber {
   grid-column: 3;
   grid-row: 9;
+}
+
+/* blink */
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.4; }
+}
+
+/* media queries */
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 2.0rem;
+  }
+
+  /* .wenn {
+    padding-right: 2rem;
+  }
+
+  .nicht {
+    padding-left: 2rem;
+  } */
+
+  #quoteshow {
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: left;
+  }
+
+  #source {
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: right;
+  }
+
+  .g1 .g4 {
+    height: .2rem;
+  }
+
+  .g2 .g3 {
+    height: .5rem;
+  }
 }

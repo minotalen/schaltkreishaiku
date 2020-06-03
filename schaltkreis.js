@@ -45,7 +45,7 @@ function speak(elem) {
       quote.innerText = "";
     }
   }
-  
+
   if(quoteIndex == 1) speechSynthesis.cancel();
   speechSynthesis.speak(msg);
   lastWord = elem.innerText;
@@ -55,10 +55,10 @@ function speak(elem) {
     // console.log("clearing hint timer");
     clearTimeout(hintTime);
   }
-  
+
   hintTime = setTimeout(hint, hintTimeAmount);
   hintTimerRunning = true;
-  
+
   // finished quote
   if(quoteIndex == 23 && !firstSolve) {
     source.innerText = sourceText;
@@ -76,7 +76,10 @@ function speak(elem) {
     for(let i = 0; i < schaltWord.length; i++) {
       schaltWord[i].classList.add("blink_me");
       schaltWord[i].addEventListener("click", function( event ) {
-        window.location = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
+        if (parent)
+          parent.document.location.href = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
+        else
+          location.href = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
       });
     }
   }
@@ -108,7 +111,7 @@ for(let i = 0; i < schaltWord.length; i++) {
       speak(schaltWord[i]);
     }
   });
-  
+
 }
 
 function truncate(str, no_words) {

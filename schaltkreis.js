@@ -1,7 +1,7 @@
 const correctArray = ["wenn", "ich", "nicht", "sehe", "dass", "ich", "blind", "bin", "dann", "bin", "ich", "blind", "wenn", "ich", "aber", "sehe", "dass", "ich", "blind", "bin", "dann", "sehe", "ich"];
 let quoteIndex = 0;
 const correctQuote =
-    "wenn ich nicht sehe,\n \t\tdass ich blind bin,\n dann bin ich blind;\n \t\twenn ich aber sehe,\n dass ich blind bin,\n \t\t\tdann sehe ich.";
+    "wenn ich nicht sehe,\n \t\t\tdass ich blind bin,\n dann bin ich blind; \n\t\t\twenn ich aber sehe,\n dass ich blind bin, \n\t\t\t\tdann sehe ich.";
 const sourceText = "- heinz von förster";
 let lastWord = "";
 let hintTimerRunning = false;
@@ -49,6 +49,7 @@ function speak(elem) {
   if(quoteIndex == 1) speechSynthesis.cancel();
   speechSynthesis.speak(msg);
   lastWord = elem.innerText;
+
   if(hintTimerRunning) {
     hintTimerRunning = false;
     // console.log("clearing hint timer");
@@ -72,6 +73,12 @@ function speak(elem) {
     quot.text = ". zitiert nach heinz von förster";
     speechSynthesis.speak(quot);
     firstSolve = true;
+    for(let i = 0; i < schaltWord.length; i++) {
+      schaltWord[i].classList.add("blink_me");
+      schaltWord[i].addEventListener("click", function( event ) {
+        window.location = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
+      });
+    }
   }
 
 }

@@ -101,6 +101,7 @@ for(let i = 0; i < schaltWord.length; i++) {
       speak(schaltWord[i]);
     }
   });
+  
 }
 
 function truncate(str, no_words) {
@@ -112,3 +113,9 @@ const quote = document.getElementById("quoteshow");
 const source = document.getElementById("source");
 
 hint();
+
+function preventBehavior(e) {
+    e.preventDefault();
+}
+
+document.addEventListener("touchmove", preventBehavior, { passive: false });

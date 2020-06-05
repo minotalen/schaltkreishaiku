@@ -2,12 +2,11 @@ const correctArray = ["wenn", "ich", "nicht", "sehe", "dass", "ich", "blind", "b
 let quoteIndex = 0;
 const correctQuote =
     "wenn ich nicht sehe,\n \t\t\tdass ich blind bin,\n dann bin ich blind; \n\t\t\twenn ich aber sehe,\n dass ich blind bin, \n\t\t\t\tdann sehe ich.";
-const sourceText = "- heinz von förster";
 let lastWord = "";
 let hintTimerRunning = false;
 let hintTime;
 let hintTimeAmount = 4000;
-let firstSolve = false;
+let solvedOnce = false;
 
 function speak(elem) {
   let msg = new SpeechSynthesisUtterance();
@@ -27,7 +26,7 @@ function speak(elem) {
     elem.classList.remove("highlight");
   };
 
-  if(correctArray[quoteIndex-1] == elem.innerText) {
+  if(correctArray[quoteIndex-1] == elem.innerText && !solvedOnce) {
     return;
   }
   if(correctArray[quoteIndex] == elem.innerText) {
@@ -60,8 +59,8 @@ function speak(elem) {
   hintTimerRunning = true;
 
   // finished quote
-  if(quoteIndex == 23 && !firstSolve) {
-    source.innerText = sourceText;
+  if(quoteIndex == 23 && !solvedOnce) {
+    source.innerHTML = `- <a href="https://minotalen.digital/projects/#schaltkreishaiku">heinz von förster</a>`;
     let quot = new SpeechSynthesisUtterance();
 
     quot.text = elem.innerText;
@@ -72,15 +71,15 @@ function speak(elem) {
     quot.pitch = 1; //0 to 2
     quot.text = ". zitiert nach heinz von förster";
     speechSynthesis.speak(quot);
-    firstSolve = true;
+    solvedOnce = true;
     for(let i = 0; i < schaltWord.length; i++) {
       schaltWord[i].classList.add("blink_me");
-      schaltWord[i].addEventListener("click", function( event ) {
-        if (parent)
-          parent.document.location.href = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
-        else
-          location.href = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
-      });
+      // schaltWord[i].addEventListener("click", function( event ) {
+      //   if (parent)
+      //     parent.document.location.href = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
+      //   else
+      //     location.href = "https://minotalen.github.io/portfolio/projects/#schaltkreishaiku";
+      // });
     }
   }
 
@@ -107,7 +106,7 @@ for(let i = 0; i < schaltWord.length; i++) {
       schaltWord[j].classList.remove("blink_me");
     }
     // prevent duplicate utterance
-    if(lastWord != schaltWord[i].innerText) {
+    if(lastWord != schaltWord[i].innerText || solvedOnce) {
       speak(schaltWord[i]);
     }
   });
@@ -127,5 +126,3 @@ hint();
 function preventBehavior(e) {
     e.preventDefault();
 }
-
-document.addEventListener("touchmove", preventBehavior, { passive: false });

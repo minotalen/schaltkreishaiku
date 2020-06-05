@@ -1,16 +1,24 @@
-body {
-    margin: 0;
-    font-family: 'Oswald', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    text-align: center;
-}
+#schaltkreis {
+  display: grid;
+  grid-template-columns: 0.5fr min-content 0.7fr min-content 0.5fr;
+  grid-template-rows: 9;
+  font-family: 'Oswald', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
 
-.highlight {
-    background-color: yellow;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #quoteshow {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+
   white-space: pre;
   padding: 5px 30px;
   font-size: 2rem;
@@ -20,17 +28,13 @@ body {
 }
 
 #source {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+
   padding: 0 30px;
   font-size: 2rem;
   font-weight: 300;
   text-align: right;
-}
-
-#schaltkreis {
-  display: grid;
-  /* grid-template-columns: 5; */
-  grid-template-columns: 1fr min-content 1fr min-content 1fr;
-  grid-template-rows: 9;
 }
 
 .schaltWord {
@@ -82,8 +86,11 @@ body {
   height: .5rem;
 }
 
-.bin {
+.wordbox.bin {
   margin-top: 1rem;
+}
+
+.bin {
   grid-column: 3;
   grid-row: 1;
 }
@@ -148,34 +155,40 @@ body {
   animation: blinker 2s linear infinite;
 }
 
-@keyframes blinker {  
+@keyframes blinker {
   50% { opacity: 0.4; }
 }
 
 /* media queries */
-@media only screen and (max-width: 600px) {
-  body {
-    font-size: 2.0rem;
+@media only screen and (max-width: 800px) {
+  .wordbox.bin {
+    margin-top: 0.5rem;
   }
 
-  /* .wenn {
-    padding-right: 2rem;
+  #schaltkreis {
+    font-size: 9vmin;
   }
-
-  .nicht {
-    padding-left: 2rem;
-  } */
 
   #quoteshow {
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 300;
     text-align: left;
+    padding: 5px 10px;
   }
 
   #source {
     font-size: 1rem;
     font-weight: 300;
     text-align: right;
+    padding: 5px 15px;
+  }
+
+  .wenn {
+    left: -.5rem;
+  }
+
+  .nicht {
+    left: .5rem;
   }
 
   .g1 .g4 {
@@ -185,4 +198,13 @@ body {
   .g2 .g3 {
     height: .5rem;
   }
+
+  .gapv1 {
+    width: 10%
+  }
+
+  .gapv2 {
+    width: 10%
+  }
+
 }
